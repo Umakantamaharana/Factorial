@@ -1,23 +1,30 @@
-import logo from './logo.svg';
+import React,{useState} from 'react'
 import './App.css';
 
 function App() {
+  const [answer,setans]=useState(0);
+  const findfactorial=(e)=>{
+    e.preventDefault();
+    let no = document.getElementById("num").value;
+    console.log(no);
+    var ans = 1 ;
+    if (no==='' || no%2 !== 0)
+    return;
+    for(var i = no; i > 0; i--){
+      ans = ans * i;
+    }
+    setans(ans);
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="app-title">
+        <h1>Factorial Calculator</h1>
+      </div>
+      <form>
+        <input type="text" id="result" value={answer} readOnly/>
+        <input type="text" id="num" placeholder="Enter a number"/>
+        <button onClick={findfactorial}>factorial</button>
+      </form>
     </div>
   );
 }
